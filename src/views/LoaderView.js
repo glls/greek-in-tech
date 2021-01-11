@@ -1,8 +1,6 @@
-import Backbone from 'backbone'
-import $ from 'jquery'
+import Backbone from 'backbone';
 
 class LoaderView extends Backbone.View {
-
 	constructor() {
 		super({
 			el: '.loader'
@@ -10,13 +8,8 @@ class LoaderView extends Backbone.View {
 	}
 
 	initialize() {
-		this.listenTo(this, 'hide', this.hideLoader);
+		this.listenTo(this, 'hide', () => this.$el.hide());
 	}
-
-	hideLoader() {
-		this.$el.hide();
-	}
-
 }
 
 export default LoaderView;

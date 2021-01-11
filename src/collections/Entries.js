@@ -3,28 +3,20 @@ import _ from 'underscore';
 import Entry from '../models/Entry';
 
 class Entries extends Backbone.Collection {
-
-	constructor(entries) {
-		super(entries);
+	initialize() {
 		this.model = Entry;
 	}
 
 	getUnviewedEntryID() {
-		var unviewedEntries = this.where({ viewed : false });
+		const unviewedEntries = this.where({ viewed: false });
 
 		if (unviewedEntries.length > 0) {
-			return _.sample(unviewedEntries).get("id");
-		} else {
-
-			this.each(function(model){
-				model.set("viewed", false);
-			});
-
-			return this.sample().get("id");
+			return _.sample(unviewedEntries).get('id');
 		}
 
+		this.each(model => model.set('viewed', false));
+		return this.sample().get('id');
 	}
-
 }
 
 export default Entries;
